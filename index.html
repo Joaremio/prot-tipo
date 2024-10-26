@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio do Restaurante</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Cardápio do Restaurante</h1>
+        <div id="menu" class="row mt-4">
+            <!-- Itens do cardápio irão aqui -->
+        </div>
+        <div id="pedido" class="mt-5">
+            <h3>Seu Pedido</h3>
+            <ul id="lista-pedido" class="list-group">
+                <!-- Itens selecionados vão aparecer aqui -->
+            </ul>
+            <button class="btn btn-primary mt-3" onclick="enviarPedido()">Enviar Pedido</button>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

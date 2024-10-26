@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandas da Cozinha</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Comandas para a Cozinha</h1>
+        <div id="comandas">
+            <!-- Cada comanda será exibida aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Função para carregar todas as comandas pendentes
+        function carregarComandas() {
+            const pedidosCozinha = JSON.parse(localStorage.getItem("pedidosCozinha")) || [];
+            const comandasContainer = document.getElementById("comandas");
+            comandasContainer.innerHTML = ""; // Limpa a exibição anterior
+
+            pedidosCozinha.forEach(pedido => {
+                let comandaHTML = `
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Comanda ID: ${pedido.id}</h5>
+                            <ul class="list-group mb-3">
+                                ${pedido.itens.map(item => `<li class="list-group-item">${item.nome} - R$ ${item.preco.toFixed(2)}</li>`).join('')}
+                            </ul>
+                            <button class="btn btn-success" onclick="completarPedido(${pedido.id})">Marcar como Completo</button>
+                        </div>
+                    </div>
+                `;
+                comandasContainer.innerHTML += comandaHTML;
+            });
+        }
+
+        // Função para marcar um pedido como completo
+        function completarPedido(id) {
+            let pedidosCozinha = JSON.parse(localStorage.getItem("pedidosCozinha")) || [];
+            pedidosCozinha = pedidosCozinha.filter(pedido => pedido.id !== id); // Remove o pedido com o ID correspondente
+            localStorage.setItem("pedidosCozinha", JSON.stringify(pedidosCozinha));
+            carregarComandas(); // Atualiza a exibição
+        }
+
+        // Carrega todas as comandas ao abrir a página
+        carregarComandas();
+    </script>
+</body>
+</html>
