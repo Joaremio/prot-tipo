@@ -53,9 +53,15 @@ exibirMenu();
 // Função para enviar o pedido para a "cozinha"
 // Função para enviar o pedido para a "cozinha"
 function enviarPedido() {
+    // Obtém o nome do cliente e o número da mesa
+    const nomeCliente = document.getElementById("nomeCliente").value;
+    const numeroMesa = document.getElementById("numeroMesa").value;
+
     // Criação da comanda com um ID único
     const comanda = {
         id: new Date().getTime(),
+        nomeCliente: nomeCliente,
+        numeroMesa: numeroMesa,
         itens: pedido.map(item => ({
             nome: item.nome,
             preco: item.preco
@@ -64,12 +70,14 @@ function enviarPedido() {
 
     // Formatação da mensagem para WhatsApp
     let mensagem = `*Comanda ID:* ${comanda.id}\n`;
+    mensagem += `*Nome do Cliente:* ${comanda.nomeCliente}\n`;
+    mensagem += `*Número da Mesa:* ${comanda.numeroMesa}\n`;
     comanda.itens.forEach(item => {
         mensagem += `${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
     });
 
     // Adicione o número de telefone do cozinheiro
-    const numeroCozinha = "5584991164038"; // Substitua pelo número de telefone do cozinheiro
+    const numeroCozinha = "5511999999999"; // Substitua pelo número de telefone do cozinheiro
     const mensagemCodificada = encodeURIComponent(mensagem);
     const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroCozinha}&text=${mensagemCodificada}`;
 
@@ -81,6 +89,7 @@ function enviarPedido() {
     pedido = [];
     atualizarResumoPedido(); // Limpa o resumo do pedido
 }
+
 
 
 
