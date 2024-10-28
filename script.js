@@ -77,7 +77,7 @@ function enviarPedido() {
     });
 
     // Adicione o número de telefone do cozinheiro
-    const numeroCozinha = "5511999999999"; // Substitua pelo número de telefone do cozinheiro
+    const numeroCozinha = "5584991164038"; // Substitua pelo número de telefone do cozinheiro
     const mensagemCodificada = encodeURIComponent(mensagem);
     const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroCozinha}&text=${mensagemCodificada}`;
 
