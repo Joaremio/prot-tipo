@@ -51,24 +51,36 @@ exibirMenu();
 
 // Função para enviar o pedido para a "cozinha"
 // Função para enviar o pedido para a "cozinha"
+// Função para enviar o pedido para a "cozinha"
 function enviarPedido() {
+    // Criação da comanda com um ID único
     const comanda = {
-        id: new Date().getTime(), // Gera um ID único com base no timestamp
+        id: new Date().getTime(),
         itens: pedido.map(item => ({
             nome: item.nome,
             preco: item.preco
         }))
     };
 
-    // Recupera o array de pedidos atuais no Local Storage ou inicia um novo array
-    let pedidosCozinha = JSON.parse(localStorage.getItem("pedidosCozinha")) || [];
-    pedidosCozinha.push(comanda); // Adiciona a nova comanda ao array
-    localStorage.setItem("pedidosCozinha", JSON.stringify(pedidosCozinha));
+    // Formatação da mensagem para WhatsApp
+    let mensagem = `*Comanda ID:* ${comanda.id}\n`;
+    comanda.itens.forEach(item => {
+        mensagem += `${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
+    });
+
+    // Adicione o número de telefone do cozinheiro
+    const numeroCozinha = "5584991164038"; // Substitua pelo número de telefone do cozinheiro
+    const mensagemCodificada = encodeURIComponent(mensagem);
+    const linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroCozinha}&text=${mensagemCodificada}`;
+
+    // Abre o link do WhatsApp em uma nova aba
+    window.open(linkWhatsApp, "_blank");
 
     // Alerta de confirmação e limpeza do pedido atual
-    alert("Pedido enviado para a cozinha!");
+    alert("Pedido enviado para a cozinha via WhatsApp!");
     pedido = [];
-    atualizarResumoPedido();
+    atualizarResumoPedido(); // Limpa o resumo do pedido
 }
+
 
 
