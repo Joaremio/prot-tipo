@@ -1,0 +1,10 @@
+#nomeCliente{
+    max-width: 300px;
+}
+#numeroMesa{
+   max-width: 300px;
+}
+
+.bola{
+    background-color: deeppink;
+}
