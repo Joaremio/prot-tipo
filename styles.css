@@ -8,3 +8,30 @@
 .bola{
     background-color: deeppink;
 }
+
+.card {
+    height: 400px; /* Ajuste a altura do card conforme necessário */
+    width: 180px; /* Ajuste a largura do card conforme necessário */
+    margin: auto; /* Centraliza o card dentro da coluna */
+    display: flex;
+    flex-direction: column; /* Alinha o conteúdo verticalmente */
+}
+
+.card-body {
+    display: flex; /* Usar flexbox para o corpo do card */
+    flex-direction: column; /* Direção vertical */
+    justify-content: space-between; /* Espalha o conteúdo */
+    flex-grow: 1; /* Faz o card-body ocupar o espaço disponível */
+}
+
+.card-title {
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+.card-text {
+    margin-bottom: auto; /* Permite que o espaço abaixo do preço cresça */
+}
+
+.card button {
+    margin-top: auto; /* Mover o botão para a parte inferior */
+}
