@@ -10,14 +10,14 @@ const menuItems = [
     { nome: "Cheeseburger", preco: 11.00, categoria: "Lanche" }
 ];
 
-const pedido = {};
+const pedido = {}; // Armazena os itens do pedido
 
 // Função para exibir itens do menu com base na categoria selecionada
 function exibirMenu(categoria = "") {
     const menuContainer = document.getElementById('menu');
     menuContainer.innerHTML = ""; // Limpa os itens existentes
 
-    // Filtra os itens com base na categoria, se uma for selecionada
+    // Filtra os itens com base na categoria selecionada
     const itensFiltrados = categoria ? menuItems.filter(item => item.categoria === categoria) : menuItems;
 
     // Exibe os itens filtrados
@@ -29,9 +29,9 @@ function exibirMenu(categoria = "") {
                 <div class="card-body text-center">
                     <h5 class="card-title">${item.nome}</h5>
                     <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
-                    <button class="btn btn-secondary btn-sm" onclick="alterarQuantidade('${item.nome}', -1)">-</button>
+                    <button class="btn btn-secondary btn-sm" onclick="alterarQuantidade('${item.nome}', -1, ${index})" id="btn-menos-${index}">-</button>
                     <span id="quantidade-${index}">1</span>
-                    <button class="btn btn-secondary btn-sm" onclick="alterarQuantidade('${item.nome}', 1)">+</button>
+                    <button class="btn btn-secondary btn-sm" onclick="alterarQuantidade('${item.nome}', 1, ${index})">+</button>
                     <button class="btn btn-primary mt-2" onclick="adicionarAoPedido('${item.nome}', ${index})">Adicionar ao Pedido</button>
                 </div>
             </div>
@@ -45,14 +45,18 @@ function filtrarCategoria(categoria) {
     exibirMenu(categoria);
 }
 
-// As demais funções permanecem as mesmas...
-function alterarQuantidade(nome, delta) {
-    const quantidadeSpan = document.getElementById(`quantidade-${menuItems.findIndex(item => item.nome === nome)}`);
+// Função para alterar a quantidade de um item antes de adicionar ao pedido
+function alterarQuantidade(nome, delta, index) {
+    const quantidadeSpan = document.getElementById(`quantidade-${index}`);
     let quantidade = parseInt(quantidadeSpan.innerText);
-    quantidade = Math.max(1, quantidade + delta); // impede de ser menor que 1
+    quantidade = Math.max(1, quantidade + delta); // Impede quantidade menor que 1
     quantidadeSpan.innerText = quantidade;
+
+    // Desativa o botão "-" se quantidade for 1
+    document.getElementById(`btn-menos-${index}`).disabled = quantidade <= 1;
 }
 
+// Função para adicionar item ao pedido
 function adicionarAoPedido(nome, index) {
     const quantidade = parseInt(document.getElementById(`quantidade-${index}`).innerText);
     if (pedido[nome]) {
@@ -66,6 +70,7 @@ function adicionarAoPedido(nome, index) {
     atualizarPedido();
 }
 
+// Função para atualizar a exibição dos itens do pedido
 function atualizarPedido() {
     const listaPedido = document.getElementById('lista-pedido');
     listaPedido.innerHTML = '';
@@ -92,11 +97,13 @@ function atualizarPedido() {
     listaPedido.appendChild(totalItem);
 }
 
+// Função para remover item do pedido
 function removerDoPedido(nome) {
     delete pedido[nome];
     atualizarPedido();
 }
 
+// Função para enviar o pedido via WhatsApp
 function enviarPedido() {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
