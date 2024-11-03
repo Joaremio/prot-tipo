@@ -6,6 +6,16 @@
     <title>Cardápio do Restaurante</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo personalizado para as setas do carrossel */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -24,10 +34,21 @@
             <button class="btn btn-secondary mx-1" onclick="filtrarCategoria('')">Mostrar Todos</button>
         </div>
 
-        <div id="menu" class="row mt-4">
-            <!-- Itens do cardápio irão aqui -->
+        <!-- Carrossel de itens do cardápio -->
+        <div id="menu-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" id="menu">
+                <!-- Itens do carrossel serão inseridos aqui dinamicamente -->
+            </div>
+            <a class="carousel-control-prev" href="#menu-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#menu-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
         </div>
-        
+
         <!-- Seção de pedidos -->
         <div id="pedido" class="mt-5">
             <h3>Seu Pedido</h3>
