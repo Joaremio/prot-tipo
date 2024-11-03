@@ -54,7 +54,6 @@ const menuItems = [
     
 ]; 
 
-
 const pedido = {};
 
 // Função para exibir itens do menu com base na categoria selecionada
@@ -68,7 +67,7 @@ function exibirMenu(categoria = "") {
     // Exibe os itens filtrados
     itensFiltrados.forEach((item, index) => {
         const itemDiv = document.createElement('div');
-        itemDiv.className = "col-md-3 mb-3"; // Ajuste a coluna se necessário
+        itemDiv.className = "col-4 col-md-4 col-lg-3 mb-3"; // Configura três colunas em telas pequenas
         itemDiv.innerHTML = `
             <div class="card">
                 <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
@@ -83,8 +82,6 @@ function exibirMenu(categoria = "") {
     });
 }
 
-
-
 // Função para filtrar o cardápio por categoria
 function filtrarCategoria(categoria) {
     exibirMenu(categoria);
@@ -92,7 +89,7 @@ function filtrarCategoria(categoria) {
 
 function adicionarAoPedido(nome) {
     if (pedido[nome]) {
-        pedido[nome].quantidade += 1;
+        pedido[nome].quantidade += 1; // Aumenta a quantidade se o item já estiver no pedido
     } else {
         pedido[nome] = {
             quantidade: 1,
@@ -100,9 +97,7 @@ function adicionarAoPedido(nome) {
         };
     }
     atualizarPedido();
-    alert(`${nome} foi adicionado ao seu pedido!`); // Exemplo de alerta
 }
-
 
 function atualizarPedido() {
     const listaPedido = document.getElementById('lista-pedido');
@@ -133,17 +128,11 @@ function atualizarPedido() {
     listaPedido.appendChild(totalItem);
 }
 
-
 function atualizarQuantidade(nome, novaQuantidade) {
-    novaQuantidade = parseInt(novaQuantidade);
-    if (novaQuantidade < 1) {
-        removerDoPedido(nome); // Remove o item se a quantidade for menor que 1
-    } else {
-        pedido[nome].quantidade = novaQuantidade;
-    }
+    if (novaQuantidade < 1) novaQuantidade = 1; // Impede de ser menor que 1
+    pedido[nome].quantidade = parseInt(novaQuantidade);
     atualizarPedido();
 }
-
 
 function removerDoPedido(nome) {
     delete pedido[nome];
@@ -151,11 +140,6 @@ function removerDoPedido(nome) {
 }
 
 function enviarPedido() {
-    if (Object.keys(pedido).length === 0) {
-        alert('Seu pedido está vazio.');
-        return;
-    }
-
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
 
@@ -164,17 +148,15 @@ function enviarPedido() {
         return;
     }
 
-    // Montagem da mensagem e envio para WhatsApp
     let mensagem = `Pedido para o cliente ${nomeCliente}, Mesa ${numeroMesa}:%0A`;
     Object.keys(pedido).forEach(item => {
         mensagem += `${pedido[item].quantidade} x ${item} - R$ ${(pedido[item].quantidade * pedido[item].preco).toFixed(2)}%0A`;
     });
 
-    const numeroWhatsApp = "5584991164038"; 
+    const numeroWhatsApp = "5584991164038"; // Substitua pelo número real do WhatsApp
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
     window.open(url, '_blank');
 }
-
 
 // Exibe todos os itens inicialmente
 exibirMenu();
