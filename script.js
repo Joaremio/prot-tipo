@@ -1,4 +1,4 @@
-// Exemplo de cardápio com categorias
+
 const menuItems = [
     { nome: "Batata Frita", preco: 5.00, categoria: "Petiscos", imagem:"css/batata.jpeg" }, 
     { nome: "Caldo de Camarão", preco: 15.00, categoria: "Caldo", imagem: "css/refrigerante-guarana-antarctica-garrafa-2l-1.webp" },
@@ -92,15 +92,17 @@ function filtrarCategoria(categoria) {
 
 function adicionarAoPedido(nome) {
     if (pedido[nome]) {
-        pedido[nome].quantidade += 1; // Aumenta a quantidade se o item já estiver no pedido
+        pedido[nome].quantidade += 1;
     } else {
         pedido[nome] = {
-            quantidade: 1, // Começa com quantidade 1
+            quantidade: 1,
             preco: menuItems.find(item => item.nome === nome).preco
         };
     }
     atualizarPedido();
+    alert(`${nome} foi adicionado ao seu pedido!`); // Exemplo de alerta
 }
+
 
 function atualizarPedido() {
     const listaPedido = document.getElementById('lista-pedido');
@@ -133,10 +135,15 @@ function atualizarPedido() {
 
 
 function atualizarQuantidade(nome, novaQuantidade) {
-    if (novaQuantidade < 1) novaQuantidade = 1; // Impede de ser menor que 1
-    pedido[nome].quantidade = parseInt(novaQuantidade);
+    novaQuantidade = parseInt(novaQuantidade);
+    if (novaQuantidade < 1) {
+        removerDoPedido(nome); // Remove o item se a quantidade for menor que 1
+    } else {
+        pedido[nome].quantidade = novaQuantidade;
+    }
     atualizarPedido();
 }
+
 
 function removerDoPedido(nome) {
     delete pedido[nome];
@@ -144,6 +151,11 @@ function removerDoPedido(nome) {
 }
 
 function enviarPedido() {
+    if (Object.keys(pedido).length === 0) {
+        alert('Seu pedido está vazio.');
+        return;
+    }
+
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
 
@@ -152,15 +164,17 @@ function enviarPedido() {
         return;
     }
 
+    // Montagem da mensagem e envio para WhatsApp
     let mensagem = `Pedido para o cliente ${nomeCliente}, Mesa ${numeroMesa}:%0A`;
     Object.keys(pedido).forEach(item => {
         mensagem += `${pedido[item].quantidade} x ${item} - R$ ${(pedido[item].quantidade * pedido[item].preco).toFixed(2)}%0A`;
     });
 
-    const numeroWhatsApp = "5584991164038"; // Substitua pelo número real do WhatsApp
+    const numeroWhatsApp = "5584991164038"; 
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
     window.open(url, '_blank');
 }
+
 
 // Exibe todos os itens inicialmente
 exibirMenu();
