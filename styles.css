@@ -11,7 +11,7 @@
 }
 
 .card {
-    height: auto; /* Deixe a altura automática para acomodar o conteúdo */
+    height: 400px; /* Deixe a altura automática para acomodar o conteúdo */
     width: 180px; /* Ajuste a largura do card conforme necessário */
     margin: 10px; /* Centraliza o card dentro da coluna */
     display: flex;
@@ -32,6 +32,12 @@
 
 .card-text {
     font-size: 1rem; /* Tamanho da fonte do texto */
+}
+
+.categoria-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    font-size: 1rem;
 }
 
 @media (max-width: 576px) { /* Para telas pequenas */
@@ -61,6 +67,17 @@
 
     #boti{
         font-size: 9.5px;
+    }
+
+    .categoria-btn {
+        flex: 1 1 45%; /* Faz os botões ocuparem 45% da largura disponível, permitindo duas colunas */
+        margin: 5px 2px; /* Reduz a margem para otimizar o espaço */
+        font-size: 0.8rem; /* Ajusta o tamanho da fonte */
+    }
+    .categorias-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Centraliza os botões */
     }
 }
 
