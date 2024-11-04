@@ -22,17 +22,18 @@
         <h1 class="text-center">Cardápio do Restaurante</h1>
 
         <!-- Botões de categorias -->
-        <div class="text-center mb-4">
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Petiscos')">Petiscos</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Caldo')">Caldo</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Lanche')">Lanche</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Bebidas')">Bebidas</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Espetinhos')">Espetinhos</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Refrigerantes')">Refrigerantes</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Combos')">Combos</button>
-            <button class="btn btn-primary mx-1" onclick="filtrarCategoria('Destiladas')">Destiladas</button>
-            <button class="btn btn-secondary mx-1" onclick="filtrarCategoria('')">Mostrar Todos</button>
+        <div id="categorias" class="my-4">
+            <button class="btn btn-primary" onclick="filtrarCategoria('')">Todos</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Caldo')">Caldo</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Petiscos')">Petiscos</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Lanche')">Lanche</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Bebidas')">Bebidas</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Espetinhos')">Espetinhos</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Combos')">Combos</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Destiladas')">Destiladas</button>
+            <button class="btn btn-primary" onclick="filtrarCategoria('Refrigerantes')">Refrigerantes</button>
         </div>
+        
 
         <!-- Carrossel de itens do cardápio -->
         <div id="menu-carousel" class="carousel slide" data-ride="carousel">

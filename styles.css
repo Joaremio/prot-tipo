@@ -1,18 +1,19 @@
-#nomeCliente{
+#nomeCliente {
     max-width: 300px;
 }
-#numeroMesa{
-   max-width: 300px;
+
+#numeroMesa {
+    max-width: 300px;
 }
 
-.bola{
+.bola {
     background-color: deeppink;
 }
 
 .card {
-    height: 400px; /* Ajuste a altura do card conforme necessário */
+    height: auto; /* Deixe a altura automática para acomodar o conteúdo */
     width: 180px; /* Ajuste a largura do card conforme necessário */
-    margin: auto; /* Centraliza o card dentro da coluna */
+    margin: 10px; /* Centraliza o card dentro da coluna */
     display: flex;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
 }
@@ -22,18 +23,40 @@
     flex-direction: column; /* Direção vertical */
     justify-content: space-between; /* Espalha o conteúdo */
     flex-grow: 1; /* Faz o card-body ocupar o espaço disponível */
+    padding: 10px;
 }
 
 .card-title {
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    font-size: 1.25rem; /* Tamanho da fonte do título */
 }
 
 .card-text {
-    margin-bottom: auto; /* Permite que o espaço abaixo do preço cresça */
+    font-size: 1rem; /* Tamanho da fonte do texto */
 }
 
-.card button {
-    margin-top: auto; /* Mover o botão para a parte inferior */
-}
+@media (max-width: 576px) { /* Para telas pequenas */
+    .carousel-item {
+        display: flex;
+        justify-content: center;
+    }
 
+    .card-title {
+        font-size: 1rem; /* Tamanho da fonte do título reduzido */
+    }
+
+    .card-text {
+        font-size: 0.9rem; /* Tamanho da fonte do texto reduzido */
+    }
+
+    .btn {
+        font-size: 0.8rem; /* Tamanho do botão reduzido */
+    }
+
+    .card {
+        height: auto; /* Deixa a altura automática para evitar sobreposição */
+        width: 100%; /* Ocupa toda a largura disponível */
+        max-width: 150px; /* Ajusta a largura máxima do card */
+        margin: 5px; /* Reduz a margem entre os cartões */
+    }
+}
 

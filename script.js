@@ -94,11 +94,121 @@ function exibirMenu(categoria = "") {
     }
 }
 
-// Funções de pedido (adicionar, atualizar, remover) permanecem as mesmas
+function adicionarAoPedido(nome) {
+    if (pedido[nome]) {
+        pedido[nome].quantidade += 1; // Aumenta a quantidade se o item já estiver no pedido
+    } else {
+        pedido[nome] = {
+            quantidade: 1, // Começa com quantidade 1
+            preco: menuItems.find(item => item.nome === nome).preco
+        };
+    }
+    atualizarPedido();
+}
 
-function filtrarCategoria(categoria) {
-    exibirMenu(categoria);
+function atualizarPedido() {
+    const listaPedido = document.getElementById('lista-pedido');
+    listaPedido.innerHTML = '';
+
+    let valorTotal = 0;
+    Object.keys(pedido).forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.className = "list-group-item d-flex justify-content-between align-items-center";
+
+        const valorItem = pedido[item].quantidade * pedido[item].preco;
+        valorTotal += valorItem;
+
+        listItem.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <input type="number" value="${pedido[item].quantidade}" onchange="atualizarQuantidade('${item}', this.value)" style="width: 50px;" min="1" class="mr-2">
+                <span>${item} - R$ ${pedido[item].preco.toFixed(2)} unidade</span>
+                <button class="btn btn-danger btn-sm ml-2" onclick="removerDoPedido('${item}')">Remover</button>
+            </div>
+        `;
+
+        listaPedido.appendChild(listItem);
+    });
+
+    const totalItem = document.createElement('li');
+    totalItem.className = "list-group-item d-flex justify-content-between align-items-center font-weight-bold";
+    totalItem.innerHTML = `<span>Total</span><span>R$ ${valorTotal.toFixed(2)}</span>`;
+    listaPedido.appendChild(totalItem);
+}
+
+function atualizarQuantidade(nome, novaQuantidade) {
+    if (novaQuantidade < 1) novaQuantidade = 1; // Impede de ser menor que 1
+    pedido[nome].quantidade = parseInt(novaQuantidade);
+    atualizarPedido();
+}
+
+function removerDoPedido(nome) {
+    delete pedido[nome];
+    atualizarPedido();
+}
+
+function enviarPedido() {
+    const nomeCliente = document.getElementById('nomeCliente').value;
+    const numeroMesa = document.getElementById('numeroMesa').value;
+
+    if (!nomeCliente || !numeroMesa) {
+        alert('Por favor, preencha o nome e o número da mesa.');
+        return;
+    }
+
+    let mensagem = `Pedido para o cliente ${nomeCliente}, Mesa ${numeroMesa}:%0A`;
+    Object.keys(pedido).forEach(item => {
+        mensagem += `${pedido[item].quantidade} x ${item} - R$ ${(pedido[item].quantidade * pedido[item].preco).toFixed(2)}%0A`;
+    });
+
+    const numeroWhatsApp = "5584991164038"; // Substitua pelo número real do WhatsApp
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    window.open(url, '_blank');
 }
 
 // Exibe todos os itens inicialmente
 exibirMenu();
+
+// Função para filtrar o cardápio por categoria
+function filtrarCategoria(categoria) {
+    exibirMenu(categoria); // Passa a categoria para exibirMenu
+}
+
+// Função para exibir itens do menu como carrossel com base na categoria selecionada
+function exibirMenu(categoria = "") {
+    const menuContainer = document.getElementById('menu');
+    menuContainer.innerHTML = ""; // Limpa os itens existentes
+
+    const itensFiltrados = categoria ? menuItems.filter(item => item.categoria === categoria) : menuItems;
+    let activeClass = 'active';
+
+    // Divide os itens em slides para o carrossel
+    for (let i = 0; i < itensFiltrados.length; i += 4) {
+        const slide = document.createElement('div');
+        slide.className = `carousel-item ${activeClass}`;
+        activeClass = ''; // Apenas o primeiro slide é ativo
+
+        // Cria uma linha para conter até 4 cartões
+        const row = document.createElement('div');
+        row.className = "row justify-content-center";
+
+        itensFiltrados.slice(i, i + 4).forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = "col-3 col-sm-3 col-md-3 mb-3"; // Mantenha col-3 para todos os tamanhos
+            itemDiv.innerHTML = `
+                <div class="card">
+                    <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${item.nome}</h5>
+                        <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
+                        <button class="btn btn-primary" onclick="adicionarAoPedido('${item.nome}')">Adicionar ao Pedido</button>
+                    </div>
+                </div>
+            `;
+            row.appendChild(itemDiv);
+        });
+        slide.appendChild(row);
+        menuContainer.appendChild(slide);
+    }
+}
+
+
