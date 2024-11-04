@@ -41,22 +41,26 @@
     }
 
     .card-title {
-        font-size: 1rem; /* Tamanho da fonte do título reduzido */
+        font-size: 0.7rem; /* Tamanho da fonte do título reduzido */
     }
 
     .card-text {
-        font-size: 0.9rem; /* Tamanho da fonte do texto reduzido */
+        font-size: 0.7rem; /* Tamanho da fonte do texto reduzido */
     }
 
     .btn {
-        font-size: 0.8rem; /* Tamanho do botão reduzido */
+        font-size: 0.1rem; /* Tamanho do botão reduzido */
     }
 
     .card {
-        height: auto; /* Deixa a altura automática para evitar sobreposição */
-        width: 100%; /* Ocupa toda a largura disponível */
-        max-width: 150px; /* Ajusta a largura máxima do card */
+        height: 300px; /* Deixa a altura automática para evitar sobreposição */
+        width: 100px; /* Ocupa toda a largura disponível */
+        max-width: 180px; /* Ajusta a largura máxima do card */
         margin: 5px; /* Reduz a margem entre os cartões */
+    }
+
+    #boti{
+        font-size: 9.5px;
     }
 }
 
