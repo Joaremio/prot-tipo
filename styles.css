@@ -1,3 +1,8 @@
+body {
+    background-color: #72290d !important; /* Amarelo suave */
+    color: #000000; /* Texto preto para contraste */
+}
+
 #nomeCliente {
     max-width: 300px;
 }
@@ -11,11 +16,20 @@
 }
 
 .card {
-    height: 400px; /* Deixe a altura automática para acomodar o conteúdo */
+    height: 410px; /* Deixe a altura automática para acomodar o conteúdo */
     width: 180px; /* Ajuste a largura do card conforme necessário */
     margin: 10px; /* Centraliza o card dentro da coluna */
     display: flex;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
+    background-color: #f9d71c; /* Amarelo suave */
+    border: 3px solid black !important; /* Borda preta */
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações */
+}
+.card:hover {
+    transform: translateY(-5px); /* Leve elevação ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa ao passar o mouse */
 }
 
 .card-body {
@@ -24,15 +38,49 @@
     justify-content: space-between; /* Espalha o conteúdo */
     flex-grow: 1; /* Faz o card-body ocupar o espaço disponível */
     padding: 10px;
+    background-color:  #fde910;
+    
 }
 
 .card-title {
     font-size: 1.25rem; /* Tamanho da fonte do título */
+    color: #000000; /* Texto preto */
+    margin-top: 10px;
+    margin-bottom: 2px;
 }
 
 .card-text {
     font-size: 1rem; /* Tamanho da fonte do texto */
 }
+
+
+.card-img-top{
+    height: 120px;
+}
+
+
+#pedido {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+.btn-primary:hover {
+    background-color: #0056b3; /* Tom de azul um pouco mais escuro */
+    transition: 0.3s;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
 
 
 
