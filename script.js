@@ -54,40 +54,44 @@ const menuItems = [
     
 ]; 
 
-
 const pedido = {};
 
-// Função para exibir itens do menu com base na categoria selecionada
+// Função para exibir itens do menu como carrossel com base na categoria selecionada
 function exibirMenu(categoria = "") {
     const menuContainer = document.getElementById('menu');
     menuContainer.innerHTML = ""; // Limpa os itens existentes
 
-    // Filtra os itens com base na categoria
     const itensFiltrados = categoria ? menuItems.filter(item => item.categoria === categoria) : menuItems;
+    let activeClass = 'active';
 
-    // Exibe os itens filtrados
-    itensFiltrados.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = "col-md-3 mb-3"; // Ajuste a coluna se necessário
-        itemDiv.innerHTML = `
-            <div class="card">
-                <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">${item.nome}</h5>
-                    <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
-                    <button class="btn btn-primary" onclick="adicionarAoPedido('${item.nome}', ${index})">Adicionar ao Pedido</button>
+    // Divide os itens em slides para o carrossel
+    for (let i = 0; i < itensFiltrados.length; i += 3) {
+        const slide = document.createElement('div');
+        slide.className = `carousel-item ${activeClass}`;
+        activeClass = ''; // Apenas o primeiro slide é ativo
+
+        // Cria uma linha para conter até 3 cartões
+        const row = document.createElement('div');
+        row.className = "row justify-content-center";
+
+        itensFiltrados.slice(i, i + 3).forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = "col-md-4 mb-3";
+            itemDiv.innerHTML = `
+                <div class="card">
+                    <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${item.nome}</h5>
+                        <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
+                        <button class="btn btn-primary" onclick="adicionarAoPedido('${item.nome}')">Adicionar ao Pedido</button>
+                    </div>
                 </div>
-            </div>
-        `;
-        menuContainer.appendChild(itemDiv);
-    });
-}
-
-
-
-// Função para filtrar o cardápio por categoria
-function filtrarCategoria(categoria) {
-    exibirMenu(categoria);
+            `;
+            row.appendChild(itemDiv);
+        });
+        slide.appendChild(row);
+        menuContainer.appendChild(slide);
+    }
 }
 
 function adicionarAoPedido(nome) {
@@ -133,7 +137,6 @@ function atualizarPedido() {
     listaPedido.appendChild(totalItem);
 }
 
-
 function atualizarQuantidade(nome, novaQuantidade) {
     novaQuantidade = parseInt(novaQuantidade);
     if (novaQuantidade < 1) {
@@ -178,3 +181,48 @@ function enviarPedido() {
 
 // Exibe todos os itens inicialmente
 exibirMenu();
+
+// Função para filtrar o cardápio por categoria
+function filtrarCategoria(categoria) {
+    exibirMenu(categoria); // Passa a categoria para exibirMenu
+}
+
+// Função para exibir itens do menu como carrossel com base na categoria selecionada
+function exibirMenu(categoria = "") {
+    const menuContainer = document.getElementById('menu');
+    menuContainer.innerHTML = ""; // Limpa os itens existentes
+
+    const itensFiltrados = categoria ? menuItems.filter(item => item.categoria === categoria) : menuItems;
+    let activeClass = 'active';
+
+    // Divide os itens em slides para o carrossel
+    for (let i = 0; i < itensFiltrados.length; i += 4) {
+        const slide = document.createElement('div');
+        slide.className = `carousel-item ${activeClass}`;
+        activeClass = ''; // Apenas o primeiro slide é ativo
+
+        // Cria uma linha para conter até 4 cartões
+        const row = document.createElement('div');
+        row.className = "row justify-content-center";
+
+        itensFiltrados.slice(i, i + 4).forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = "col-3 col-sm-3 col-md-3 mb-3"; // Mantenha col-3 para todos os tamanhos
+            itemDiv.innerHTML = `
+                <div class="card">
+                    <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${item.nome}</h5>
+                        <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
+                        <button class="btn btn-primary" onclick="adicionarAoPedido('${item.nome}')">Adicionar ao Pedido</button>
+                    </div>
+                </div>
+            `;
+            row.appendChild(itemDiv);
+        });
+        slide.appendChild(row);
+        menuContainer.appendChild(slide);
+    }
+}
+
+
