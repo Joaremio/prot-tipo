@@ -18,21 +18,49 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Cardápio do Restaurante</h1>
-
-        <!-- Botões de categorias -->
-        <div id="categorias" class="my-4">
-            <button class="btn btn-primary" onclick="filtrarCategoria('')">Todos</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Caldo')">Caldo</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Petiscos')">Petiscos</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Lanche')">Lanche</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Bebidas')">Bebidas</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Espetinhos')">Espetinhos</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Combos')">Combos</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Destiladas')">Destiladas</button>
-            <button class="btn btn-primary" onclick="filtrarCategoria('Refrigerantes')">Refrigerantes</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="css/logo.jpeg" alt="Bootstrap" width="150" height="80"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- Links das Categorias -->
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Petiscos')">Petiscos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Caldo')">Caldos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Lanche')">Lanches</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Espetinhos')">Espetinhos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Bebidas')">Bebidas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Refrigerantes')">Refrigerantes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Combos')">Combos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filtrarCategoria('Destiladas')">Destiladas</a>
+              </li>
+            </ul>
+            <!-- Barra de Pesquisa -->
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Buscar no cardápio" aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">Buscar</button>
+            </form>
+          </div>
         </div>
+      </nav>
+      
         
 
         <!-- Carrossel de itens do cardápio -->

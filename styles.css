@@ -11,7 +11,7 @@
 }
 
 .card {
-    height: auto; /* Deixe a altura automática para acomodar o conteúdo */
+    height: 400px; /* Deixe a altura automática para acomodar o conteúdo */
     width: 180px; /* Ajuste a largura do card conforme necessário */
     margin: 10px; /* Centraliza o card dentro da coluna */
     display: flex;
@@ -33,6 +33,9 @@
 .card-text {
     font-size: 1rem; /* Tamanho da fonte do texto */
 }
+
+
+
 
 @media (max-width: 576px) { /* Para telas pequenas */
     .carousel-item {
@@ -62,5 +65,7 @@
     #boti{
         font-size: 9.5px;
     }
+
+    
 }
 
