@@ -72,18 +72,6 @@ body {
     transition: 0.3s;
     transform: scale(1.05);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 576px) { /* Para telas pequenas */
     .carousel-item {
         display: flex;
@@ -91,7 +79,7 @@ body {
     }
 
     .card-title {
-        font-size: 0.7rem; /* Tamanho da fonte do título reduzido */
+        font-size: 0.5rem; /* Tamanho da fonte do título reduzido */
     }
 
     .card-text {
@@ -105,12 +93,12 @@ body {
     .card {
         height: 300px; /* Deixa a altura automática para evitar sobreposição */
         width: 100px; /* Ocupa toda a largura disponível */
-        max-width: 180px; /* Ajusta a largura máxima do card */
-        margin: 5px; /* Reduz a margem entre os cartões */
+        display: flex;
+        justify-content: space-between;
     }
 
     #boti{
-        font-size: 9.5px;
+        font-size: 8px;
     }
 
     #logu{

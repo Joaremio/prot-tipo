@@ -169,7 +169,7 @@ function exibirMenu(categoria = "") {
         const row = document.createElement('div');
         row.className = "row justify-content-center";
 
-        itensFiltrados.slice(i, i + 4).forEach(item => {
+        itensFiltrados.slice(i, i + 3).forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.className = "col-3 col-sm-3 col-md-3 mb-3"; // Mantenha col-3 para todos os tamanhos
             itemDiv.innerHTML = `
