@@ -131,11 +131,18 @@ function enviarPedido() {
         return;
     }
 
-    // Montagem da mensagem e envio para WhatsApp
+    // Montagem da mensagem e cálculo do total
     let mensagem = `Pedido para o cliente ${nomeCliente}, Mesa ${numeroMesa}:%0A`;
+    let total = 0;
+
     Object.keys(pedido).forEach(item => {
-        mensagem += `${pedido[item].quantidade} x ${item} - R$ ${(pedido[item].quantidade * pedido[item].preco).toFixed(2)}%0A`;
+        const subtotal = pedido[item].quantidade * pedido[item].preco;
+        total += subtotal;
+        mensagem += `${pedido[item].quantidade} x ${item} - R$ ${subtotal.toFixed(2)}%0A`;
     });
+
+    // Adiciona o total ao final da mensagem
+    mensagem += `%0ATotal do Pedido: R$ ${total.toFixed(2)}`;
 
     const numeroWhatsApp = "5584991164038"; 
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;

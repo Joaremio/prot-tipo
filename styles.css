@@ -111,6 +111,10 @@ body {
     background-color: #343a40 !important;
 }
 
+.btn-primary {
+    margin-bottom: 5px; /* Ajuste para melhorar o espaçamento */
+    background-color: black !important;
+}
 
 @media (max-width: 576px) { /* Para telas pequenas */
     .carousel-item {
