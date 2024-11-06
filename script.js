@@ -155,7 +155,7 @@ function enviarPedido() {
     }
 
     // Montagem da mensagem e cálculo do total
-    let mensagem = `Pedido para o cliente ${nomeCliente}, Mesa ${numeroMesa}:%0A`;
+    let mensagem = `Pedido para  \n cliente: ${nomeCliente},  \n Mesa ${numeroMesa}:%0A \n`;
     let total = 0;
 
     const pedido = pedidos[chaveComanda];
