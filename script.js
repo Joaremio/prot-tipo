@@ -125,8 +125,8 @@ function enviarPedido() {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
     const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
-    const enderecoCliente = document.getElementById('ruaCliente');
-    const numeroCliente = document.getElementById('numeroEndereco').value;
+    const enderecoCliente = document.getElementById('ruaCliente').value;
+    const numeroCliente =  Number(document.getElementById('numeroEndereco').value);
 
     if (Object.keys(pedidos).length === 0) {
         alert("Adicione pelo menos um item ao pedido.");
