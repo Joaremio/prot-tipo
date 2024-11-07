@@ -125,7 +125,8 @@ function enviarPedido() {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
     const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
-    const enderecoCliente = document.getElementById('enderecoCliente') ? document.getElementById('enderecoCliente').value : '';
+    const enderecoCliente = document.getElementById('ruaCliente');
+    const numeroCliente =  number(document.getElementById('numeroEndereco').value);
 
     if (Object.keys(pedidos).length === 0) {
         alert("Adicione pelo menos um item ao pedido.");
@@ -133,12 +134,12 @@ function enviarPedido() {
     }
 
     // Criar um resumo do pedido
-    let resumoPedido = `*Pedido de:* ${nomeCliente}\n`;
+    let resumoPedido = `*Cliente:* ${nomeCliente}\n`;
 
     if (pedidoEmCasa) {
-        resumoPedido += `*Endereço:* ${enderecoCliente}\n*Pedido para entrega:* Sim\n\nItens:\n`;
+        resumoPedido += `*Endereço:* ${enderecoCliente}, Numero: ${numeroCliente}\n*Pedido para entrega:* Sim\n\nItens:\n`;
     } else {
-        resumoPedido += `*Mesa:* ${numeroMesa}\n*Pedido para entrega:* Não\n\nItens:\n`;
+        resumoPedido += `*Mesa:* ${numeroMesa}\n`;
     }
 
     let valorTotal = 0;
