@@ -134,10 +134,10 @@ function enviarPedido() {
     }
 
     // Criar um resumo do pedido
-    let resumoPedido = `*Cliente:* ${nomeCliente}\n`;
+    let resumoPedido = `*PEDIDO PARA ENTREGA*\n *Cliente:* ${nomeCliente}\n`;
 
     if (pedidoEmCasa) {
-        resumoPedido += `*Endereço:* ${enderecoCliente}, Numero: ${numeroCliente}\n*Pedido para entrega:* Sim\n\nItens:\n`;
+        resumoPedido += `*Endereço:* ${enderecoCliente}\n*Numero*: ${numeroCliente}\n`;
     } else {
         resumoPedido += `*Mesa:* ${numeroMesa}\n`;
     }
@@ -146,7 +146,7 @@ function enviarPedido() {
     Object.keys(pedidos).forEach(item => {
         const itemInfo = pedidos[item];
         const valorItem = itemInfo.quantidade * itemInfo.preco;
-        resumoPedido += `- ${item} - ${itemInfo.quantidade} x R$ ${itemInfo.preco.toFixed(2)} = R$ ${valorItem.toFixed(2)}\n`;
+        resumoPedido += `- ${item} - ${itemInfo.quantidade} x R$ ${itemInfo.preco.toFixed(2)}\n`;
         valorTotal += valorItem;
     });
 
