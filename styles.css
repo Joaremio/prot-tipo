@@ -39,8 +39,9 @@ body {
     flex-grow: 1; /* Faz o card-body ocupar o espaço disponível */
     padding: 10px;
     background-color:  #fde910;
-    border: solid 3px black;
-    border-top: solid 3px #f9d71c;
+    border: solid 4px black;
+    border-radius: 8px;
+
 }
 
 .card-title {
@@ -52,11 +53,18 @@ body {
 
 .card-text {
     font-size: 1rem; /* Tamanho da fonte do texto */
+    background-color: black;
+    color: #fde910;
+    font-weight: bolder;
 }
 
 
 .card-img-top{
     height: 120px;
+    border-top: solid 5px black !important;
+    border-left: solid 5px black !important;
+    border-right: solid 5px black !important;
+    border-radius: 8px;
 }
 
 
