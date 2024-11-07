@@ -144,12 +144,10 @@ function enviarPedido() {
 
     resumoPedido += `\nTotal: R$ ${valorTotal.toFixed(2)}`;
 
-    // Codificar para enviar via WhatsApp
-    const encodedPedido = encodeURIComponent(resumoPedido);
-    const whatsappUrl = `https://wa.me/?text=${encodedPedido}`;
-
-    // Abrir o WhatsApp com o resumo do pedido
-    window.open(whatsappUrl, '_blank');
+    
+    const numeroWhatsApp = "5584991164038"; 
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    window.open(url, '_blank');
 }
 
 // Exibe todos os itens inicialmente
