@@ -175,6 +175,11 @@ function enviarPedido() {
 // Exibe todos os itens inicialmente
 exibirMenu();
 
+function filtrarCategoria(categoria) {
+    exibirMenu(categoria); // Passa a categoria para exibirMenu
+}
+
+
 // Função para exibir itens do menu como carrossel com base na categoria selecionada
 function exibirMenu(categoria = "") {
     const menuContainer = document.getElementById('menu');
