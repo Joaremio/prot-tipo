@@ -135,23 +135,40 @@ function removerDoPedido(chaveComanda, nome) {
 function enviarPedido() {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
-
-    if (!nomeCliente || !numeroMesa) {
-        alert('Por favor, preencha o nome e o número da mesa.');
+    const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
+    
+    // Verifica se o nome e mesa (ou endereço) foram preenchidos
+    if (!nomeCliente || (!numeroMesa && !pedidoEmCasa)) {
+        alert('Por favor, preencha o nome e o número da mesa ou marque "Em casa" e insira o endereço.');
         return;
     }
-
-    const chaveComanda = `${nomeCliente}-${numeroMesa}`;
-
+    
+    // Cria chave para o pedido
+    const chaveComanda = `${nomeCliente}-${pedidoEmCasa ? "Em casa" : numeroMesa}`;
+    
     if (!pedidos[chaveComanda] || Object.keys(pedidos[chaveComanda]).length === 0) {
         alert('Seu pedido está vazio.');
         return;
     }
 
-    // Montagem da mensagem e cálculo do total
-    let mensagem = `Pedido para o cliente: %0A*Cliente*: ${nomeCliente} %0A*Numero da Mesa*: ${numeroMesa}%0A%0A`;  // Negrito adicionado
-    let total = 0;
+    // Monta a mensagem do pedido
+    let mensagem = `Pedido para o cliente: %0A*Cliente*: ${nomeCliente}%0A`;
 
+    // Adiciona endereço ou mesa conforme a opção selecionada
+    if (pedidoEmCasa) {
+        const ruaCliente = document.getElementById('ruaCliente').value;
+        const numeroEndereco = document.getElementById('numeroEndereco').value;
+        if (!ruaCliente || !numeroEndereco) {
+            alert('Por favor, preencha o endereço completo (rua e número).');
+            return;
+        }
+        mensagem += `*Endereço*: Rua ${ruaCliente}, Nº ${numeroEndereco}%0A%0A`;
+    } else {
+        mensagem += `*Número da Mesa*: ${numeroMesa}%0A%0A`;
+    }
+
+    // Adiciona os itens do pedido e calcula o total
+    let total = 0;
     const pedido = pedidos[chaveComanda];
     Object.keys(pedido).forEach(item => {
         const subtotal = pedido[item].quantidade * pedido[item].preco;
@@ -161,7 +178,8 @@ function enviarPedido() {
 
     mensagem += `%0ATotal do Pedido: R$ ${total.toFixed(2)}`;
 
-    const numeroWhatsApp = "5584991164038"; 
+    // Envia a mensagem via WhatsApp
+    const numeroWhatsApp = "5584991164038";
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
     window.open(url, '_blank');
 }
@@ -211,5 +229,19 @@ function exibirMenu(categoria = "") {
         menuContainer.appendChild(slide);
     }
 }
+
+   
+// Função para alternar a exibição dos campos de endereço
+function toggleEndereco() {
+    const checkbox = document.getElementById("pedidoEmCasa");
+    const enderecoDiv = document.getElementById("enderecoCliente");
+
+    if (checkbox.checked) {
+        enderecoDiv.style.display = "block";
+    } else {
+        enderecoDiv.style.display = "none";
+    }
+}
+
 
 
