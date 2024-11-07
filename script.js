@@ -125,6 +125,7 @@ function enviarPedido() {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
     const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
+    const enderecoCliente = document.getElementById('enderecoCliente') ? document.getElementById('enderecoCliente').value : '';
 
     if (Object.keys(pedidos).length === 0) {
         alert("Adicione pelo menos um item ao pedido.");
@@ -132,21 +133,29 @@ function enviarPedido() {
     }
 
     // Criar um resumo do pedido
-    let resumoPedido = `Pedido de: ${nomeCliente}\nMesa: ${numeroMesa}\nPedido para entrega: ${pedidoEmCasa ? 'Sim' : 'Não'}\n\nItens:\n`;
+    let resumoPedido = `*Pedido de:* ${nomeCliente}\n`;
+
+    if (pedidoEmCasa) {
+        resumoPedido += `*Endereço:* ${enderecoCliente}\n*Pedido para entrega:* Sim\n\nItens:\n`;
+    } else {
+        resumoPedido += `*Mesa:* ${numeroMesa}\n*Pedido para entrega:* Não\n\nItens:\n`;
+    }
 
     let valorTotal = 0;
     Object.keys(pedidos).forEach(item => {
         const itemInfo = pedidos[item];
         const valorItem = itemInfo.quantidade * itemInfo.preco;
-        resumoPedido += `${item} - ${itemInfo.quantidade} x R$ ${itemInfo.preco.toFixed(2)} = R$ ${valorItem.toFixed(2)}\n`;
+        resumoPedido += `- ${item} - ${itemInfo.quantidade} x R$ ${itemInfo.preco.toFixed(2)} = R$ ${valorItem.toFixed(2)}\n`;
         valorTotal += valorItem;
     });
 
-    resumoPedido += `\nTotal: R$ ${valorTotal.toFixed(2)}`;
+    resumoPedido += `\n*Total: R$ ${valorTotal.toFixed(2)}*`;
 
-    
+    // Formatar a mensagem para o WhatsApp
+    const mensagem = encodeURIComponent(resumoPedido);
     const numeroWhatsApp = "5584991164038"; 
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    
     window.open(url, '_blank');
 }
 
