@@ -59,28 +59,17 @@ const pedidos = {};  // Objeto que vai armazenar os pedidos por cliente
 
 // Função para adicionar um item ao pedido
 function adicionarAoPedido(nome) {
-    const nomeCliente = document.getElementById('nomeCliente').value;
-    const numeroMesa = document.getElementById('numeroMesa').value;
 
-    const chaveComanda = `${nomeCliente}-${numeroMesa}`;
-
-    // Verifica se o pedido já existe para a comanda
-    if (!pedidos[chaveComanda]) {
-        pedidos[chaveComanda] = {}; // Cria uma nova comanda se não existir
-    }
-
-    const pedido = pedidos[chaveComanda];
-
-    if (pedido[nome]) {
-        pedido[nome].quantidade += 1;
+    if (pedidos[nome]) {
+        pedidos[nome].quantidade += 1;
     } else {
-        pedido[nome] = {
+        pedidos[nome] = {
             quantidade: 1,
             preco: menuItems.find(item => item.nome === nome).preco
         };
     }
 
-    atualizarPedido(chaveComanda);
+    atualizarPedido();
 }
 
 // Função para atualizar o pedido e exibir a lista
@@ -89,20 +78,19 @@ function atualizarPedido(chaveComanda) {
     listaPedido.innerHTML = '';
 
     let valorTotal = 0;
-    const pedido = pedidos[chaveComanda];
 
-    Object.keys(pedido).forEach(item => {
+    Object.keys(pedidos).forEach(item => {
         const listItem = document.createElement('li');
         listItem.className = "list-group-item d-flex justify-content-between align-items-center";
 
-        const valorItem = pedido[item].quantidade * pedido[item].preco;
+        const valorItem = pedidos[item].quantidade * pedidos[item].preco;
         valorTotal += valorItem;
 
         listItem.innerHTML = `
             <div class="d-flex justify-content-between align-items-center w-100">
-                <input type="number" value="${pedido[item].quantidade}" onchange="atualizarQuantidade('${chaveComanda}', '${item}', this.value)" style="width: 50px;" min="1" class="mr-2">
-                <span>${item} - R$ ${pedido[item].preco.toFixed(2)} unidade</span>
-                <button class="btn btn-danger btn-sm ml-2" onclick="removerDoPedido('${chaveComanda}', '${item}')">Remover</button>
+                <input type="number" value="${pedidos[item].quantidade}" onchange="atualizarQuantidade('${item}', this.value)" style="width: 50px;" min="1" class="mr-2">
+                <span>${item} - R$ ${pedidos[item].preco.toFixed(2)} unidade</span>
+                <button class="btn btn-danger btn-sm ml-2" onclick="removerDoPedido('${item}')">Remover</button>
             </div>
         `;
         listaPedido.appendChild(listItem);
@@ -115,73 +103,53 @@ function atualizarPedido(chaveComanda) {
 }
 
 // Função para atualizar a quantidade de um item no pedido
-function atualizarQuantidade(chaveComanda, nome, novaQuantidade) {
+function atualizarQuantidade(nome, novaQuantidade) {
     novaQuantidade = parseInt(novaQuantidade);
     if (novaQuantidade < 1) {
-        removerDoPedido(chaveComanda, nome); // Remove o item se a quantidade for menor que 1
+        removerDoPedido(nome); // Remove o item se a quantidade for menor que 1
     } else {
-        pedidos[chaveComanda][nome].quantidade = novaQuantidade;
+        pedidos[nome].quantidade = novaQuantidade;
     }
-    atualizarPedido(chaveComanda);
+    atualizarPedido();
 }
 
 // Função para remover um item do pedido
-function removerDoPedido(chaveComanda, nome) {
-    delete pedidos[chaveComanda][nome];
-    atualizarPedido(chaveComanda);
+function removerDoPedido(nome) {
+    delete pedidos[nome];
+    atualizarPedido();
 }
+
 
 // Função para enviar o pedido via WhatsApp
 function enviarPedido() {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
     const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
-    
-    // Verifica se o nome e mesa (ou endereço) foram preenchidos
-    if (!nomeCliente || (!numeroMesa && !pedidoEmCasa)) {
-        alert('Por favor, preencha o nome e o número da mesa ou marque "Em casa" e insira o endereço.');
-        return;
-    }
-    
-    // Cria chave para o pedido
-    const chaveComanda = `${nomeCliente}-${pedidoEmCasa ? "Em casa" : numeroMesa}`;
-    
-    if (!pedidos[chaveComanda] || Object.keys(pedidos[chaveComanda]).length === 0) {
-        alert('Seu pedido está vazio.');
+
+    if (Object.keys(pedidos).length === 0) {
+        alert("Adicione pelo menos um item ao pedido.");
         return;
     }
 
-    // Monta a mensagem do pedido
-    let mensagem = `Pedido para o cliente: %0A*Cliente*: ${nomeCliente}%0A`;
+    // Criar um resumo do pedido
+    let resumoPedido = `Pedido de: ${nomeCliente}\nMesa: ${numeroMesa}\nPedido para entrega: ${pedidoEmCasa ? 'Sim' : 'Não'}\n\nItens:\n`;
 
-    // Adiciona endereço ou mesa conforme a opção selecionada
-    if (pedidoEmCasa) {
-        const ruaCliente = document.getElementById('ruaCliente').value;
-        const numeroEndereco = document.getElementById('numeroEndereco').value;
-        if (!ruaCliente || !numeroEndereco) {
-            alert('Por favor, preencha o endereço completo (rua e número).');
-            return;
-        }
-        mensagem += `*Endereço*: Rua ${ruaCliente}, Nº ${numeroEndereco}%0A%0A`;
-    } else {
-        mensagem += `*Número da Mesa*: ${numeroMesa}%0A%0A`;
-    }
-
-    // Adiciona os itens do pedido e calcula o total
-    let total = 0;
-    const pedido = pedidos[chaveComanda];
-    Object.keys(pedido).forEach(item => {
-        const subtotal = pedido[item].quantidade * pedido[item].preco;
-        total += subtotal;
-        mensagem += `${pedido[item].quantidade} x ${item} - R$ ${subtotal.toFixed(2)}%0A`;
+    let valorTotal = 0;
+    Object.keys(pedidos).forEach(item => {
+        const itemInfo = pedidos[item];
+        const valorItem = itemInfo.quantidade * itemInfo.preco;
+        resumoPedido += `${item} - ${itemInfo.quantidade} x R$ ${itemInfo.preco.toFixed(2)} = R$ ${valorItem.toFixed(2)}\n`;
+        valorTotal += valorItem;
     });
 
-    mensagem += `%0ATotal do Pedido: R$ ${total.toFixed(2)}`;
+    resumoPedido += `\nTotal: R$ ${valorTotal.toFixed(2)}`;
 
-    // Envia a mensagem via WhatsApp
-    const numeroWhatsApp = "5584991164038";
-    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-    window.open(url, '_blank');
+    // Codificar para enviar via WhatsApp
+    const encodedPedido = encodeURIComponent(resumoPedido);
+    const whatsappUrl = `https://wa.me/?text=${encodedPedido}`;
+
+    // Abrir o WhatsApp com o resumo do pedido
+    window.open(whatsappUrl, '_blank');
 }
 
 // Exibe todos os itens inicialmente
