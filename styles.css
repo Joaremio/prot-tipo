@@ -16,10 +16,11 @@ body {
 }
 
 .card {
-    height: 410px; /* Deixe a altura automática para acomodar o conteúdo */
-    width: 180px; /* Ajuste a largura do card conforme necessário */
+    height: 100%; /* Deixe a altura automática para acomodar o conteúdo */
+    width: 200px; /* Ajuste a largura do card conforme necessário */
     margin: 10px; /* Centraliza o card dentro da coluna */
     display: flex;
+    justify-content: space-between;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
     background-color: #f9d71c; /* Amarelo suave */
     border: 3px solid #f9d71c !important; /* Borda preta */
@@ -49,6 +50,7 @@ body {
     color: #000000; /* Texto preto */
     margin-top: 10px;
     margin-bottom: 2px;
+    flex-grow: 1; /* Permite que o título ocupe o espaço restante */
 }
 
 .card-text {
@@ -60,7 +62,9 @@ body {
 
 
 .card-img-top{
-    height: 120px;
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
     border-top: solid 5px black !important;
     border-left: solid 5px black !important;
     border-right: solid 5px black !important;
@@ -94,10 +98,6 @@ body {
 }
 
 
-/* Estilo para a barra de navegação */
-.navbar {
-    background-color: #4CAF50 !important; /* Cor de fundo da barra de navegação */
-}
 
 .navbar .nav-link {
     color: white  !important; /* Cor do texto dos links */
@@ -117,15 +117,7 @@ body {
     color: #FFD700 !important; /* Cor do texto da marca ao passar o mouse */
 }
 
-/* Estilo para o botão de pesquisa */
-.btn-outline-success {
-    border-color: white; /* Cor da borda do botão */
-}
 
-.btn-outline-success:hover {
-    background-color: white; /* Cor de fundo ao passar o mouse */
-    color: #4CAF50; /* Cor do texto ao passar o mouse */
-}
 .container-fluid{
     background-color: #343a40 !important;
 }
@@ -133,6 +125,7 @@ body {
 .btn-primary {
     margin-bottom: 5px; /* Ajuste para melhorar o espaçamento */
     background-color: black !important;
+    
 }
 
 #pedido {
@@ -158,11 +151,20 @@ body {
     font-size: 1rem;
     padding: 10px 20px;
     color: #f9d71c !important;
+    font-weight: bolder;
+}
+
+#boti{
+    margin-top: auto; /* Empurra o botão para o final do card */
+    background-color: black;
+    color: #f9d71c;
+    font-weight: bold;
 }
 
 @media (max-width: 576px) { /* Para telas pequenas */
     .carousel-item {
         display: flex;
+        width: 100%;
         justify-content: center;
     }
 
@@ -187,6 +189,8 @@ body {
 
     #boti{
         font-size: 8px;
+        font-weight: bolder;
+        margin-top: auto;
     }
 
     #logu{
