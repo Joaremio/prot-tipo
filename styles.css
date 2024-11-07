@@ -60,16 +60,25 @@ body {
 }
 
 
-#pedido {
-    background-color: #f9d71c;
+ #pedido {
+    background-color: #f8f9fa;
     padding: 20px;
-    border: solid rgb(207, 187, 187);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    max-height: auto;
+    max-width: 700px;
     margin: auto;
 }
+
+#pedido h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#lista-pedido {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 .btn-primary:hover {
     background-color: #0056b3; /* Tom de azul um pouco mais escuro */
     transition: 0.3s;
@@ -118,6 +127,7 @@ body {
     background-color: black !important;
 }
 
+
 @media (max-width: 576px) { /* Para telas pequenas */
     .carousel-item {
         display: flex;
@@ -150,6 +160,15 @@ body {
     #logu{
         width: 100%;
         height: auto;
+    }
+    #pedido h3 {
+        font-size: 1.25rem;
+    }
+    .form-control {
+        font-size: 0.9rem;
+    }
+    #lista-pedido .list-group-item {
+        font-size: 0.85rem;
     }
 }
 

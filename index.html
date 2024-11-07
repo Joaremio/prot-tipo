@@ -70,25 +70,31 @@
         </div>
 
         <!-- Seção de pedidos -->
-        <div id="pedido" class="mt-5">
-            <h3>Seu Pedido</h3>
-            <ul id="lista-pedido" class="list-group">
-                <!-- Itens selecionados vão aparecer aqui -->
-            </ul>
-    
-            <div class="form-group mt-3">
-                <label for="nomeCliente">Cliente:</label>
-                <input type="text" id="nomeCliente" class="form-control" placeholder="Digite seu nome" required>
+        <div id="pedido" class="mt-5 container">
+            <div class="row">
+                <!-- Campos de preenchimento à esquerda -->
+                <div class="col-md-6">
+                    <h3>Informações do Pedido</h3>
+                    <div class="form-group mt-3">
+                        <label for="nomeCliente">Cliente:</label>
+                        <input type="text" id="nomeCliente" class="form-control" placeholder="Digite seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroMesa">Mesa:</label>
+                        <input type="text" id="numeroMesa" class="form-control" placeholder="Digite o número da mesa" required>
+                    </div>
+                </div>
+        
+                <!-- Resumo do pedido à direita -->
+                <div class="col-md-6">
+                    <h3>Seu Pedido</h3>
+                    <ul id="lista-pedido" class="list-group">
+                        <!-- Itens selecionados vão aparecer aqui -->
+                    </ul>
+                    <button class="btn btn-primary mt-3" onclick="enviarPedido()">Enviar Pedido</button>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="numeroMesa">Mesa:</label>
-                <input type="text" id="numeroMesa" class="form-control" placeholder="Digite o número da mesa" required>
-            </div>
-
-            <button class="btn btn-primary mt-3" onclick="enviarPedido()">Enviar Pedido</button>
         </div>
-    </div>
 
     <!-- Scripts do Bootstrap, jQuery e Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
