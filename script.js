@@ -62,11 +62,6 @@ function adicionarAoPedido(nome) {
     const nomeCliente = document.getElementById('nomeCliente').value;
     const numeroMesa = document.getElementById('numeroMesa').value;
 
-    if (!nomeCliente || !numeroMesa) {
-        alert('Por favor, preencha o nome e o número da mesa.');
-        return;
-    }
-
     const chaveComanda = `${nomeCliente}-${numeroMesa}`;
 
     // Verifica se o pedido já existe para a comanda
@@ -86,7 +81,6 @@ function adicionarAoPedido(nome) {
     }
 
     atualizarPedido(chaveComanda);
-    alert(`${nome} foi adicionado ao seu pedido!`); 
 }
 
 // Função para atualizar o pedido e exibir a lista
