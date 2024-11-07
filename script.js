@@ -134,10 +134,10 @@ function enviarPedido() {
     }
 
     // Criar um resumo do pedido
-    let resumoPedido = `*PEDIDO PARA ENTREGA*\n *Cliente:* ${nomeCliente}\n`;
+    let resumoPedido = `*PEDIDO PARA ENTREGA*\n\n*Cliente:* ${nomeCliente}\n`;
 
     if (pedidoEmCasa) {
-        resumoPedido += `*Endereço:* ${enderecoCliente}\n*Numero*: ${numeroCliente}\n`;
+        resumoPedido += `*Endereço:* ${enderecoCliente}\n*Numero*: ${numeroCliente}\n\nItens:\n`;
     } else {
         resumoPedido += `*Mesa:* ${numeroMesa}\n`;
     }
