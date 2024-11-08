@@ -208,9 +208,15 @@ body {
     }
 
     #boti{
-        font-size: 5px;
+        font-size: .45rem;
         font-weight: bolder;
         margin-top: auto;
+        width: auto;
+        display: flex;
+        padding: 7px;
+        justify-content: center;
+
+
     }
 
     #logu{
