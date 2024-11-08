@@ -134,12 +134,12 @@ function enviarPedido() {
     }
 
     // Criar um resumo do pedido
-    let resumoPedido = `*PEDIDO PARA ENTREGA*\n\n*Cliente:* ${nomeCliente}\n`;
+    let resumoPedido ="";
 
     if (pedidoEmCasa) {
-        resumoPedido += `*Endereço:* ${enderecoCliente}\n*Numero*: ${numeroCliente}\n\nItens:\n`;
+        resumoPedido +=`*PEDIDO PARA ENTREGA*\n\n*Cliente:* ${nomeCliente}\n;*Endereço:* ${enderecoCliente}\n*Numero*: ${numeroCliente}\n\nItens:\n`;
     } else {
-        resumoPedido += `*Mesa:* ${numeroMesa}\n`;
+        resumoPedido +=`*Cliente:* ${nomeCliente}\n*Mesa:* ${numeroMesa}\n\nItens:\n`;
     }
 
     let valorTotal = 0;
