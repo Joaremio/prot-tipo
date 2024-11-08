@@ -237,5 +237,8 @@ body {
         padding: 8px 16px;
         width: 100%; /* Ocupa toda a largura disponível em telas pequenas */
     }
+    #pedido{
+        max-width: 100%;
+    }
 }
 
