@@ -16,8 +16,9 @@ body {
 }
 
 .card {
-    height: 100%; /* Deixe a altura automática para acomodar o conteúdo */
+    height: 360px; /* Deixe a altura automática para acomodar o conteúdo */
     margin: 10px; /* Centraliza o card dentro da coluna */
+    width: 200px;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
     background-color: #f9d71c; /* Amarelo suave */
     border: 3px solid #f9d71c !important; /* Borda preta */
@@ -59,7 +60,7 @@ body {
 
 .card-img-top{
     display: flex;
-    height: 280px;
+    height: 180px;
     width: 100%;
     object-fit: cover;
     border-top: solid 5px black !important;
@@ -74,7 +75,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
+    max-width: 500px;
     margin: auto;
 }
 
@@ -224,10 +225,10 @@ body {
         height: auto;
     }
     #pedido h3 {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
     .form-control {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
     }
     #lista-pedido .list-group-item {
         font-size: 0.85rem;
@@ -238,7 +239,8 @@ body {
         width: 100%; /* Ocupa toda a largura disponível em telas pequenas */
     }
     #pedido{
-        max-width: 100%;
+        max-width: 80%;
+        max-height: auto;
     }
 }
 
