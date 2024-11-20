@@ -1,14 +1,14 @@
 
 const menuItems = [
     { nome: "Batata Frita", preco: 5.00, categoria: "Petiscos", imagem:"css/batata.jpeg" }, 
-    { nome: "Caldo de Camarão", preco: 15.00, categoria: "Caldo", imagem: "css/refrigerante-guarana-antarctica-garrafa-2l-1.webp" },
+    { nome: "Caldo de Camarão", preco: 15.00, categoria: "Caldo", imagem: "css/logo.jpeg" },
     { nome: "Hambúrguer", preco: 10.00, categoria: "Lanche", imagem: "css/logo.jpeg" },
     { nome: "Caldo de Quenga", preco: 12.00, categoria: "Caldo", imagem: "css/caldo-quenga.jpeg" },
     { nome: "Filé com fritas", preco: 40.00, categoria: "Petiscos", imagem: "css/file.jpeg" },
     { nome: "Carne de sol com queijo e fritas", preco: 45.00, categoria: "Petiscos", imagem: "css/logo.jpeg" },
     { nome: "Camarão no alho e oléo com fritas", preco: 45.00, categoria: "Petiscos", imagem: "css/camaraão.jpeg" },
     { nome: "Calabresa acebolada com fritas", preco: 35.00, categoria: "Petiscos", imagem: "css/logo.jpeg" },
-    { nome: "Frango a passarinho com fritas", preco: 38.00, categoria: "Petiscos", imagem: "css/logo.jpeg" },
+    { nome: "Frango a passarinha com fritas", preco: 38.00, categoria: "Petiscos", imagem: "css/logo.jpeg" },
     { nome: "Petisco misto", preco: 50.00, categoria: "Petiscos", imagem: "css/logo.jpeg" },
     { nome: "Caldo de Mocotó", preco: 10.00, categoria: "Caldo", imagem: "css/logo.jpeg" },
     { nome: "Caldo de Costela", preco: 12.00, categoria: "Caldo", imagem: "css/caldo-carne.jpeg" },
@@ -32,7 +32,7 @@ const menuItems = [
     { nome: "Cerveja Preta", preco: 8.00, categoria: "Bebidas", imagem:"css/logo.jpeg" },
     { nome: "Pepsi(1 Litro)", preco: 8.00, categoria: "Refrigerantes", imagem: "css/pepsi.jpeg" },
     { nome: "Guaraná(1 Litro)", preco: 8.00, categoria: "Refrigerantes", imagem: "css/guarana.jpeg" },
-    { nome: "Coca Cola(1 Litro", preco: 9.00, categoria: "Refrigerantes", imagem: "css/coca-cola.jpeg" },
+    { nome: "Coca Cola(1 Litro)", preco: 9.00, categoria: "Refrigerantes", imagem: "css/coca-cola.jpeg" },
     { nome: "Refrigerante Lata", preco: 5.00, categoria: "Refrigerantes", imagem: "css/logo.jpeg" },
     { nome: "Refrigerante Caçulinha", preco: 3.00, categoria: "Refrigerantes", imagem: "css/logo.jpeg" },
     { nome: "Limoneto", preco: 7.00, categoria: "Refrigerantes", imagem: "css/limoneto.jpeg" },
@@ -49,7 +49,7 @@ const menuItems = [
     { nome: "Caranguejo Limão lata", preco: 10.00, categoria: "Destiladas", imagem: "css/caranguejo-limao.png" },
     { nome: "Caranguejo Ouro lata", preco: 10.00, categoria: "Destiladas", imagem: "css/caranguejo-ouro.jpeg" },
     { nome: "Pitu lata", preco: 10.00, categoria: "Destiladas", imagem: "css/pitu.jpeg" },
-    { nome: "Pitu Limão lata", preco: 10.00, categoria: "Destiladas", imagem: "css/pitu-limao.jpeg" },
+    { nome: "Pitu Limão", preco: 10.00, categoria: "Destiladas", imagem: "css/pitu-limao.jpeg" },
     
     
 ]; 
