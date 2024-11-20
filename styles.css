@@ -1,6 +1,7 @@
 body {
-    background-color: black !important; /* Amarelo suave */
-    color: #000000; /* Texto preto para contraste */
+    background-color: black !important; 
+    color: #000000; 
+    font-family: 'Lobster', sans-serif !important;
 }
 
 #nomeCliente {
