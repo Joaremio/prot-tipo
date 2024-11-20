@@ -128,6 +128,26 @@ function enviarPedido() {
     const enderecoCliente = document.getElementById('ruaCliente').value;
     const numeroCliente =  Number(document.getElementById('numeroEndereco').value);
 
+     // Validação para "pedido em casa"
+     if (pedidoEmCasa) {
+        if (!nomeCliente) {
+            alert("Digite o seu nome");
+            return;
+        } else if (!enderecoCliente || !numeroCliente) {
+            alert("Digite o endereço completo (rua e número)");
+            return;
+        }
+    } else {
+        // Validação para "pedido no restaurante"
+        if (!nomeCliente) {
+            alert("Digite o seu nome");
+            return;
+        } else if (!numeroMesa) {
+            alert("Digite o número da mesa");
+            return;
+        }
+    }
+
     if (Object.keys(pedidos).length === 0) {
         alert("Adicione pelo menos um item ao pedido.");
         return;
