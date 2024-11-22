@@ -178,7 +178,7 @@ function enviarPedido() {
         valorTotal += valorItem;
     });
 
-    resumoPedido += `\n*Total: R$ ${valorTotal.toFixed(2)}*`;
+    resumoPedido += `\n*Total: R$* ${valorTotal.toFixed(2)}`;
 
     // Formatar a mensagem para o WhatsApp
     const mensagem = encodeURIComponent(resumoPedido);
