@@ -126,10 +126,11 @@ function enviarPedido() {
     const numeroMesa = document.getElementById('numeroMesa').value;
     const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
     const enderecoCliente = document.getElementById('ruaCliente').value;
-    const numeroCliente =  Number(document.getElementById('numeroEndereco').value);
+    const complemento = document.getElementById('complemento').value; // Complemento (ponto de referência)
+    const numeroCliente = Number(document.getElementById('numeroEndereco').value);
 
-     // Validação para "pedido em casa"
-     if (pedidoEmCasa) {
+    // Validação para "pedido em casa"
+    if (pedidoEmCasa) {
         if (!nomeCliente) {
             alert("Digite o seu nome");
             return;
@@ -154,12 +155,16 @@ function enviarPedido() {
     }
 
     // Criar um resumo do pedido
-    let resumoPedido ="";
+    let resumoPedido = "";
 
     if (pedidoEmCasa) {
-        resumoPedido +=`*PEDIDO PARA ENTREGA*\n\n*Cliente:* ${nomeCliente}\n;*Endereço:* ${enderecoCliente}\n*Numero*: ${numeroCliente}\n\nItens:\n`;
+        resumoPedido += `*PEDIDO PARA ENTREGA*\n\n*Cliente:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}, Nº ${numeroCliente}`;
+        if (complemento) { // Adiciona o complemento se ele existir
+            resumoPedido += `\n*Ponto de referência:* ${complemento}`;
+        }
+        resumoPedido += `\n\nItens:\n`;
     } else {
-        resumoPedido +=`*Cliente:* ${nomeCliente}\n*Mesa:* ${numeroMesa}\n\nItens:\n`;
+        resumoPedido += `*Cliente:* ${nomeCliente}\n*Mesa:* ${numeroMesa}\n\nItens:\n`;
     }
 
     let valorTotal = 0;
@@ -179,6 +184,7 @@ function enviarPedido() {
     
     window.open(url, '_blank');
 }
+
 
 // Exibe todos os itens inicialmente
 exibirMenu();
