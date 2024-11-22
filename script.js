@@ -248,5 +248,16 @@ function toggleEndereco() {
     }
 }
 
+function exibirTaxaEntrega() {
+    const pedidoEmCasa = document.getElementById('pedidoEmCasa').checked;
+    const textoTaxaEntrega = document.getElementById('textoTaxaEntrega');
+    
+    if (pedidoEmCasa) {
+        textoTaxaEntrega.style.display = "block";
+    } else {
+        textoTaxaEntrega.style.display = "none";
+    }
+}
+
 
 
