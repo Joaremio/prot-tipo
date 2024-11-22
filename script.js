@@ -156,18 +156,21 @@ function enviarPedido() {
 
     // Criar um resumo do pedido
     let resumoPedido = "";
+    let valorTotal = 0;
 
     if (pedidoEmCasa) {
         resumoPedido += `*PEDIDO PARA ENTREGA*\n\n*Cliente:* ${nomeCliente}\n*Endereço:* ${enderecoCliente}, Nº ${numeroCliente}`;
         if (complemento) { // Adiciona o complemento se ele existir
             resumoPedido += `\n*Ponto de referência:* ${complemento}`;
         }
-        resumoPedido += `\n\nItens:\n`;
+        resumoPedido += `\n*Taxa de entrega: R$ 3.00*\n\nItens:\n`;
+
+        // Adiciona o valor da taxa de entrega ao total
+        valorTotal += 3.00;
     } else {
-        resumoPedido += `*Cliente:* ${nomeCliente}\n*Mesa:* ${numeroMesa}\n\nItens:\n`;
+        resumoPedido += `*PEDIDO NO RESTAURANTE*\n\n*Cliente:* ${nomeCliente}\n*Mesa:* ${numeroMesa}\n\nItens:\n`;
     }
 
-    let valorTotal = 0;
     Object.keys(pedidos).forEach(item => {
         const itemInfo = pedidos[item];
         const valorItem = itemInfo.quantidade * itemInfo.preco;
