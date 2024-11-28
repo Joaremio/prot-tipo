@@ -212,7 +212,7 @@ function exibirMenu(categoria = "") {
 
         // Cria uma linha para conter até 4 cartões
         const row = document.createElement('div');
-        row.className = "row justify-content-center";
+        row.className = "row justify-content-center g-5";
 
         itensFiltrados.slice(i, i + 3).forEach(item => {
             const itemDiv = document.createElement('div');
