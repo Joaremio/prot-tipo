@@ -155,7 +155,7 @@ body {
 }
 
 #boti{
-    margin-top: auto; /* Empurra o botão para o final do card */
+ /* Empurra o botão para o final do card */
     background-color: black;
     color: #f9d71c;
     font-weight: bold;
@@ -261,5 +261,7 @@ body {
         top: -1px; /* Move o texto para cima */
 
     }
+
+    
 }
 
