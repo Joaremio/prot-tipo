@@ -22,7 +22,7 @@ body {
     width: 200px;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
     background-color: #f9d71c; /* Amarelo suave */
-    border: 3px solid #f6f6f1 !important; /* Borda preta */
+    border: 3px solid #a7a713 !important; /* Borda preta */
     border-radius: 8px; /* Borda arredondada */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações */
