@@ -22,7 +22,7 @@ body {
     width: 200px;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
     background-color: #f9d71c; /* Amarelo suave */
-    border: 3px solid #f9d71c !important; /* Borda preta */
+    border: 3px solid #f6f6f1 !important; /* Borda preta */
     border-radius: 8px; /* Borda arredondada */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações */
@@ -38,8 +38,6 @@ body {
     flex-grow: 1; /* Faz o card-body ocupar o espaço disponível */
     padding: 10px;
     background-color:  #fde910;
-    border: solid 4px black;
-    border-radius: 8px;
     justify-content: center;
     
 }
@@ -65,10 +63,6 @@ body {
     height: 180px;
     width: 100%;
     object-fit: cover;
-    border-top: solid 5px black !important;
-    border-left: solid 5px black !important;
-    border-right: solid 5px black !important;
-    border-radius: 8px;
 }
 
 
@@ -246,7 +240,7 @@ body {
     }
 
     .row{
-        margin-right: 50px !important;
+        margin-right: 45px !important;
         gap: 15px;
     }
 
