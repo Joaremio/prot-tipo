@@ -221,7 +221,7 @@ function exibirMenu(categoria = "") {
                 <div class="card">
                     <img src="${item.imagem}" class="card-img-top" alt="${item.nome}">
                     <div class="card-body text-center">
-                        <h5 class="card-title">${item.nome}</h5>
+                        <h5 class="title">${item.nome}</h5>
                         <p class="card-text">R$ ${item.preco.toFixed(2)}</p>
                         <button class="btn btn-primary btn-sm" id="boti" onclick="adicionarAoPedido('${item.nome}')">Adicionar</button>
                     </div>

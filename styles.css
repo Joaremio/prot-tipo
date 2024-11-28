@@ -40,7 +40,8 @@ body {
     background-color:  #fde910;
     border: solid 4px black;
     border-radius: 8px;
-
+    justify-content: center;
+    
 }
 
 .card-title {
@@ -199,7 +200,7 @@ body {
     }
 
     .card {
-        height: 250px; /* Deixa a altura automática para evitar sobreposição */
+        height: 200px; /* Deixa a altura automática para evitar sobreposição */
         width: 100px; /* Ocupa toda a largura disponível */
         display: flex;
         justify-content: space-between;
@@ -247,6 +248,18 @@ body {
     .row{
         margin-right: 50px !important;
         gap: 15px;
+    }
+
+    .title {
+        font-size: 0.5rem; /* Ajuste para um tamanho legível */
+        width: 100%; /* O texto ocupará a largura total disponível */
+        white-space: normal; /* Permite quebra de linha automática */
+        word-wrap: break-word; /* Quebra a palavra se for muito longa */
+        word-break: break-word; /* Força quebra se necessário */
+        margin-top: 5px; /* Ajusta o espaço entre o topo e o texto */
+        position: relative;
+        top: -1px; /* Move o texto para cima */
+
     }
 }
 
